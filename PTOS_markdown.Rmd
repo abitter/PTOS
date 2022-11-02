@@ -4,7 +4,7 @@ subtitle: "Practices and Tools of Open Science"
 author: "André Bittermann (abi@leibniz-psychology.org)"
 date: "November 2, 2022"
 output: 
-  html_document:
+  rmarkdown::github_document:
     toc: yes
     toc_depth: 2
 toc-title: "Contents"
