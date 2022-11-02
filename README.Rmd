@@ -448,6 +448,8 @@ topic_network(candidate_models[[which(K_range == 5)]])
 topic_network(candidate_models[[which(K_range == 19)]])
 ```
 
+**Download the HTML markdown to view the interactive network plots**: https://github.com/abitter/PTOS/blob/main/README.html (*Right click on the download button and choose "save link as"*)
+
 Colors indicate groups of similar topics (via community detection). The network of `K = 5` indicates topics that are too similar, whereas the topics of `K = 19` seem to be well-separated.
 
 ## 6. Final model
