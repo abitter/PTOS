@@ -189,7 +189,7 @@ table(texts$Year[ind_taylor])
 
 # Text Preprocessing
 
-Our workflow consists of four steps (cf. [Maier et al., 2020](https://doi.org/10.1080/19312458.2018.1430754): 
+Our workflow comprises four steps (cf. [Maier et al., 2018](https://doi.org/10.1080/19312458.2018.1430754)): 
 
 1. Preprocessing 
 2. Model Selection 
