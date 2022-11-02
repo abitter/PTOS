@@ -3,19 +3,17 @@ title: 'A Topic Modeling Workflow'
 subtitle: "Practices and Tools of Open Science"
 author: "André Bittermann (abi@leibniz-psychology.org)"
 date: "November 2, 2022"
-output: 
-  rmarkdown::github_document:
-    toc: yes
-    toc_depth: 2
-toc-title: "Contents"
+output:  
+  html_document:
+    keep_md: true
+
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(
+```{r, echo = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "##", fig.retina = 2, fig.path = "README_figs/README-",
 	echo = TRUE,
 	message = FALSE,
-	warning = FALSE
-)
+	warning = FALSE)
 ```
 
 # Info

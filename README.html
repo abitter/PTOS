@@ -5661,67 +5661,6 @@ display: none;
 
 </div>
 
-<div id="TOC">
-<h2 id="toc-title">Contents</h2>
-<ul>
-<li><a href="#info" id="toc-info">Info</a></li>
-<li><a href="#libraries" id="toc-libraries">Libraries</a></li>
-<li><a href="#get-data" id="toc-get-data">Get data</a>
-<ul>
-<li><a href="#retrieve-from-github" id="toc-retrieve-from-github">Retrieve from GitHub</a></li>
-<li><a href="#get-year-of-song-release" id="toc-get-year-of-song-release">Get year of song release</a></li>
-</ul></li>
-<li><a href="#text-preprocessing" id="toc-text-preprocessing">Text
-Preprocessing</a>
-<ul>
-<li><a href="#inspect" id="toc-inspect">Inspect</a></li>
-<li><a href="#create-document-feature-matrix-dfm" id="toc-create-document-feature-matrix-dfm">Create document-feature
-matrix (DFM)</a></li>
-</ul></li>
-<li><a href="#model-selection" id="toc-model-selection">Model
-Selection</a>
-<ul>
-<li><a href="#candidate-models" id="toc-candidate-models">1. Candidate
-models</a></li>
-<li><a href="#metrics" id="toc-metrics">2. Metrics</a></li>
-<li><a href="#semantic-granularity" id="toc-semantic-granularity">3.
-Semantic granularity</a></li>
-<li><a href="#quality-of-single-topics" id="toc-quality-of-single-topics">4. Quality of single topics</a></li>
-<li><a href="#topic-similarity" id="toc-topic-similarity">5. Topic
-similarity</a></li>
-<li><a href="#final-model" id="toc-final-model">6. Final model</a></li>
-</ul></li>
-<li><a href="#topic-validity" id="toc-topic-validity">Topic Validity</a>
-<ul>
-<li><a href="#get-probability-matrices" id="toc-get-probability-matrices">Get probability matrices</a></li>
-<li><a href="#top-terms" id="toc-top-terms">Top terms</a></li>
-<li><a href="#inspect-texts" id="toc-inspect-texts">Inspect
-texts</a></li>
-<li><a href="#assign-labels" id="toc-assign-labels">Assign
-labels</a></li>
-<li><a href="#topic-table" id="toc-topic-table">Topic table</a></li>
-<li><a href="#remove-uninterpretable-topics" id="toc-remove-uninterpretable-topics">Remove uninterpretable
-topics</a></li>
-</ul></li>
-<li><a href="#topic-analyses" id="toc-topic-analyses">Topic Analyses</a>
-<ul>
-<li><a href="#most-prevalent-topics" id="toc-most-prevalent-topics">Most
-prevalent topics</a></li>
-<li><a href="#prevalence-by-year" id="toc-prevalence-by-year">Prevalence
-by year</a></li>
-</ul></li>
-<li><a href="#limitations" id="toc-limitations">Limitations</a></li>
-<li><a href="#take-home-messages" id="toc-take-home-messages">Take home
-messages</a></li>
-<li><a href="#sessioninfo" id="toc-sessioninfo">SessionInfo</a>
-<ul>
-<li><a href="#everything-except-computation-of-candidate-models" id="toc-everything-except-computation-of-candidate-models">Everything
-except computation of candidate models</a></li>
-<li><a href="#candidate-models-1" id="toc-candidate-models-1">Candidate
-models</a></li>
-</ul></li>
-</ul>
-</div>
 
 <div id="info" class="section level1">
 <h1>Info</h1>
@@ -5757,15 +5696,15 @@ taylor_swift_lyrics &lt;- read.csv(&quot;https://raw.githubusercontent.com/rford
 beyonce_lyrics &lt;- read.csv(&quot;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-09-29/beyonce_lyrics.csv&quot;)
 
 # inspect
-names(taylor_swift_lyrics)</code></pre>
-<pre><code>## [1] &quot;Artist&quot; &quot;Album&quot;  &quot;Title&quot;  &quot;Lyrics&quot;</code></pre>
-<pre class="r"><code>names(beyonce_lyrics)</code></pre>
-<pre><code>## [1] &quot;line&quot;        &quot;song_id&quot;     &quot;song_name&quot;   &quot;artist_id&quot;   &quot;artist_name&quot;
-## [6] &quot;song_line&quot;</code></pre>
-<pre class="r"><code>head(taylor_swift_lyrics$Lyrics, 1)</code></pre>
-<pre><code>## [1] &quot;He said the way my blue eyes shinx\nPut those Georgia stars to shame that night\nI said: \&quot;That&#39;s a lie.\&quot;\nJust a boy in a Chevy truck\nThat had a tendency of gettin&#39; stuck\nOn back roads at night\nAnd I was right there beside him all summer long\nAnd then the time we woke up to find that summer had gone\nBut when you think \&quot;Tim McGraw\&quot;\nI hope you think my favorite song\nThe one we danced to all night long\nThe moon like a spotlight on the lake\nWhen you think happiness\nI hope you think \&quot;that little black dress\&quot;\nThink of my head on your chest\nAnd my old faded blue jeans\nWhen you think Tim McGraw\nI hope you think of me\nSeptember saw a month of tears\nAnd thankin&#39; God that you weren&#39;t here\nTo see me like that\nBut in a box beneath my bed\nIs a letter that you never read\nFrom three summers back\nIt&#39;s hard not to find it all a little bitter sweet\nAnd lookin&#39; back on all of that, it&#39;s nice to believe\nBut when you think \&quot;Tim McGraw\&quot;\nI hope you think my favorite song\nThe one we danced to all night long\nThe moon like a spotlight on the lake\nWhen you think happiness\nI hope you think \&quot;that little black dress\&quot;\nThink of my head on your chest\nAnd my old faded blue jeans\nWhen you think Tim McGraw\nI hope you think of me\nAnd I&#39;m back for the first time since then\nI&#39;m standin&#39; on your street\nAnd there&#39;s a letter left on your doorstep\nAnd the first thing that you&#39;ll read\nIs when you think \&quot;Tim McGraw\&quot;\nI hope you think my favorite song\nSomeday you&#39;ll turn your radio on\nI hope it takes you back to that place\nWhen you think happiness\nI hope you think \&quot;that little black dress\&quot;\nThink of my head on your chest\nAnd my old faded blue jeans\nWhen you think Tim McGraw\nI hope you think of me\nOh, think of me\nMmm\nYou said the way my blue eyes shined\nPut those Georgia stars to shame that night\nI said, \&quot;That&#39;s a lie.\&quot;\n&quot;</code></pre>
-<pre class="r"><code>head(beyonce_lyrics$line, 2)</code></pre>
-<pre><code>## [1] &quot;If I ain&#39;t got nothing, I got you&quot;            
+names(taylor_swift_lyrics)
+## [1] &quot;Artist&quot; &quot;Album&quot;  &quot;Title&quot;  &quot;Lyrics&quot;
+names(beyonce_lyrics)
+## [1] &quot;line&quot;        &quot;song_id&quot;     &quot;song_name&quot;   &quot;artist_id&quot;   &quot;artist_name&quot;
+## [6] &quot;song_line&quot;
+head(taylor_swift_lyrics$Lyrics, 1)
+## [1] &quot;He said the way my blue eyes shinx\nPut those Georgia stars to shame that night\nI said: \&quot;That&#39;s a lie.\&quot;\nJust a boy in a Chevy truck\nThat had a tendency of gettin&#39; stuck\nOn back roads at night\nAnd I was right there beside him all summer long\nAnd then the time we woke up to find that summer had gone\nBut when you think \&quot;Tim McGraw\&quot;\nI hope you think my favorite song\nThe one we danced to all night long\nThe moon like a spotlight on the lake\nWhen you think happiness\nI hope you think \&quot;that little black dress\&quot;\nThink of my head on your chest\nAnd my old faded blue jeans\nWhen you think Tim McGraw\nI hope you think of me\nSeptember saw a month of tears\nAnd thankin&#39; God that you weren&#39;t here\nTo see me like that\nBut in a box beneath my bed\nIs a letter that you never read\nFrom three summers back\nIt&#39;s hard not to find it all a little bitter sweet\nAnd lookin&#39; back on all of that, it&#39;s nice to believe\nBut when you think \&quot;Tim McGraw\&quot;\nI hope you think my favorite song\nThe one we danced to all night long\nThe moon like a spotlight on the lake\nWhen you think happiness\nI hope you think \&quot;that little black dress\&quot;\nThink of my head on your chest\nAnd my old faded blue jeans\nWhen you think Tim McGraw\nI hope you think of me\nAnd I&#39;m back for the first time since then\nI&#39;m standin&#39; on your street\nAnd there&#39;s a letter left on your doorstep\nAnd the first thing that you&#39;ll read\nIs when you think \&quot;Tim McGraw\&quot;\nI hope you think my favorite song\nSomeday you&#39;ll turn your radio on\nI hope it takes you back to that place\nWhen you think happiness\nI hope you think \&quot;that little black dress\&quot;\nThink of my head on your chest\nAnd my old faded blue jeans\nWhen you think Tim McGraw\nI hope you think of me\nOh, think of me\nMmm\nYou said the way my blue eyes shined\nPut those Georgia stars to shame that night\nI said, \&quot;That&#39;s a lie.\&quot;\n&quot;
+head(beyonce_lyrics$line, 2)
+## [1] &quot;If I ain&#39;t got nothing, I got you&quot;            
 ## [2] &quot;If I ain&#39;t got something, I don&#39;t give a damn&quot;</code></pre>
 <p>The Beyoncé file has one song per line. We aggregate the lines by
 song.</p>
@@ -5862,22 +5801,22 @@ rownames(texts) &lt;- NULL
 ind_beyonce &lt;- which(texts$Artist == &quot;Beyonce&quot;)
 ind_taylor &lt;- which(texts$Artist == &quot;Taylor&quot;)</code></pre>
 <p>Let’s inspect some basic information:</p>
-<pre class="r"><code>table(texts$Year)</code></pre>
-<pre><code>## 
+<pre class="r"><code>table(texts$Year)
+## 
 ## 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2016 2017 
 ##    4    3   22    3    4   31   10   35    7   17   17   19   18   19   12   15 
 ## 2019 2020 
-##   24   16</code></pre>
-<pre class="r"><code>table(texts$Artist)</code></pre>
-<pre><code>## 
+##   24   16
+table(texts$Artist)
+## 
 ## Beyonce  Taylor 
-##     147     129</code></pre>
-<pre class="r"><code>table(texts$Year[ind_beyonce])</code></pre>
-<pre><code>## 
+##     147     129
+table(texts$Year[ind_beyonce])
+## 
 ## 2001 2002 2003 2004 2005 2006 2007 2008 2009 2011 2013 2014 2016 2019 2020 
-##    4    3   22    3    4   21    7   22    2   17   18    4   12    7    1</code></pre>
-<pre class="r"><code>table(texts$Year[ind_taylor])</code></pre>
-<pre><code>## 
+##    4    3   22    3    4   21    7   22    2   17   18    4   12    7    1
+table(texts$Year[ind_taylor])
+## 
 ## 2006 2007 2008 2009 2010 2012 2014 2017 2019 2020 
 ##   10    3   13    5   17   19   15   15   17   15</code></pre>
 </div>
@@ -5898,18 +5837,18 @@ goals!</p>
 <div id="inspect" class="section level2">
 <h2>Inspect</h2>
 <p>First, we quickly inspect the most common terms in the corpus:</p>
-<pre class="r"><code>topfeatures(dfm(tokens(texts$Lyrics, remove_punct = TRUE)), 20)</code></pre>
-<pre><code>##  you    i  the   me  and   to   my    a   it   in your   on  i&#39;m that like   oh 
+<pre class="r"><code>topfeatures(dfm(tokens(texts$Lyrics, remove_punct = TRUE)), 20)
+##  you    i  the   me  and   to   my    a   it   in your   on  i&#39;m that like   oh 
 ## 5217 4817 3224 2323 2285 1967 1670 1658 1616 1238 1121 1118 1116 1036  955  918 
 ##  all   be   of love 
-##  906  855  842  839</code></pre>
-<pre class="r"><code>topfeatures(dfm(tokens(texts$Lyrics[ind_beyonce], remove_punct = TRUE)), 20)</code></pre>
-<pre><code>##  you    i  the   me   to   my   it  and    a   on  i&#39;m your that   oh love   in 
+##  906  855  842  839
+topfeatures(dfm(tokens(texts$Lyrics[ind_beyonce], remove_punct = TRUE)), 20)
+##  you    i  the   me   to   my   it  and    a   on  i&#39;m your that   oh love   in 
 ## 2968 2489 1646 1463 1156 1066  947  930  884  749  721  650  606  602  595  570 
 ## like   be   up  all 
-##  555  503  481  473</code></pre>
-<pre class="r"><code>topfeatures(dfm(tokens(texts$Lyrics[ind_taylor], remove_punct = TRUE)), 20)</code></pre>
-<pre><code>##    i  you  the  and   me   to    a   it   in   my   of your  all that   we  but 
+##  555  503  481  473
+topfeatures(dfm(tokens(texts$Lyrics[ind_taylor], remove_punct = TRUE)), 20)
+##    i  you  the  and   me   to    a   it   in   my   of your  all that   we  but 
 ## 2328 2249 1578 1355  860  811  774  669  668  604  487  471  433  430  430  422 
 ## like  i&#39;m this know 
 ##  400  395  387  372</code></pre>
@@ -5964,8 +5903,8 @@ tokens_lemmatized &lt;- tokens_replace(tokens, lemma$variant, lemma$base)</code>
 DFM &lt;- dfm(tokens_lemmatized)
 
 # most frequent terms
-topfeatures(DFM, 50)</code></pre>
-<pre><code>##       love       time       baby       girl        way      night      thing 
+topfeatures(DFM, 50)
+##       love       time       baby       girl        way      night      thing 
 ##        502        471        424        353        248        215        211 
 ## everything      light       life      cause       home        boy      world 
 ##        168        164        161        161        159        157        153 
@@ -5980,14 +5919,16 @@ topfeatures(DFM, 50)</code></pre>
 ##       lady        car      party       door       head  everybody       star 
 ##         58         57         54         53         53         52         50 
 ##      phone 
-##         50</code></pre>
-<pre class="r"><code># most frequent terms for Beyonce
-topfeatures(DFM[ind_beyonce,])</code></pre>
-<pre><code>##  love  baby  girl  time   way   boy world light night  life 
-##   326   283   261   226   176   125   121   108   107   106</code></pre>
-<pre class="r"><code># most frequent terms for Taylor Swift
-topfeatures(DFM[ind_taylor,])</code></pre>
-<pre><code>##       time       love       baby      thing      night       girl        eye 
+##         50
+
+# most frequent terms for Beyonce
+topfeatures(DFM[ind_beyonce,])
+##  love  baby  girl  time   way   boy world light night  life 
+##   326   283   261   226   176   125   121   108   107   106
+
+# most frequent terms for Taylor Swift
+topfeatures(DFM[ind_taylor,])
+##       time       love       baby      thing      night       girl        eye 
 ##        245        176        141        126        108         92         79 
 ##        one      cause everything 
 ##         77         74         72</code></pre>
@@ -6038,7 +5979,8 @@ several values for LDA hyperparameter alpha as well (cf. <a href="https://doi.o
 2018</a>).</p>
 <pre class="r"><code># number of topics to inspect
 K_range &lt;- seq(4, 25, 1)</code></pre>
-<pre class="r"><code># Dirichlet hyperparameters
+<pre class="r"><code>
+# Dirichlet hyperparameters
 # default: alpha = eta = 1/K
 # set alpha low if you assume only few topics per doc (probability for other topics almost 0)
 # set eta low for well-separated topics
@@ -6083,8 +6025,7 @@ topics</p>
 source(&quot;./helper_functions/coherence_LDAproto.R&quot;)
 source(&quot;./helper_functions/exclusivity_LDAproto.R&quot;)
 
-coh &lt;- lapply(candidate_models, topicCoherence, DTM, N = 10) # this is where the DTM is needed</code></pre>
-<pre><code>## ================================================================================
+coh &lt;- lapply(candidate_models, topicCoherence, DTM, N = 10) # this is where the DTM is needed
 ## ================================================================================
 ## ================================================================================
 ## ================================================================================
@@ -6100,8 +6041,9 @@ coh &lt;- lapply(candidate_models, topicCoherence, DTM, N = 10) # this is where 
 ## ================================================================================
 ## ================================================================================
 ## ================================================================================
-## ================================================================================</code></pre>
-<pre class="r"><code>coh_mean &lt;- unlist(lapply(coh, mean))
+## ================================================================================
+## ================================================================================
+coh_mean &lt;- unlist(lapply(coh, mean))
 
 exc &lt;- lapply(candidate_models, exclusivity, DFM, num.words = 10)
 exc_mean &lt;- unlist(lapply(exc, mean))
@@ -6137,8 +6079,8 @@ candidates_inspect &lt;- candidate_models[select]
 for (i in 1:length(candidates_inspect)){
   print(paste(&quot;### Topics for k =&quot;, getK(getLDA((candidates_inspect[[i]]))), &quot;###&quot;))
   print(topWords(getTopics(getLDA(candidates_inspect[[i]])), 10))
-}</code></pre>
-<pre><code>## [1] &quot;### Topics for k = 5 ###&quot;
+}
+## [1] &quot;### Topics for k = 5 ###&quot;
 ##       [,1]       [,2]         [,3]    [,4]        [,5]        
 ##  [1,] &quot;power&quot;    &quot;light&quot;      &quot;love&quot;  &quot;bone&quot;      &quot;time&quot;      
 ##  [2,] &quot;body&quot;     &quot;dream&quot;      &quot;world&quot; &quot;que&quot;       &quot;one&quot;       
@@ -6229,7 +6171,7 @@ higher.</li>
 topic_network(candidate_models[[which(K_range == 5)]])</code></pre>
 <div id="htmlwidget-5baf5f77e7e1802340f5" style="width:672px;height:480px;" class="visNetwork html-widget"></div>
 <script type="application/json" data-for="htmlwidget-5baf5f77e7e1802340f5">{"x":{"nodes":{"id":[1,2,3,4,5],"label":["T1: power body","T2: light dream","T3: love world","T4: bone que","T5: time one"],"size":[9.44859463942532,24.1101419757921,22.3527733099787,6.19107835363398,37.8974117211699],"group":[1,1,1,2,1],"x":[-1,-0.642670760498198,1,-0.991319199916447,0.712744600913686],"y":[-0.412346135203208,-1,-0.867358023125819,1,-0.2726757681802]},"edges":{"from":[1,1,2,1,2,3],"to":[2,3,3,5,5,5],"width":[0.296817133929608,0.199236912289403,0.595356758276625,0.268023555143381,1.07065442512416,0.492988491058725],"name":[0.15,0.1,0.3,0.13,0.54,0.25],"label":["0.15","0.10","0.30","0.13","0.54","0.25"],"edge.width":[2.96817133929608,1.99236912289403,5.95356758276625,2.68023555143381,10.7065442512416,4.92988491058725],"color":["#B4B9C3","#BEBEBE","#96ABD2","#BEBEBE","#6495ED","#A0B0CD"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"physics":false,"shape":"dot","color":{"background":"#0085AF","border":"#013848","highlight":"#FF8000"},"font":{"size":10,"background":"white"},"shadow":{"enabled":true,"size":10}},"manipulation":{"enabled":false},"edges":{"label":["0.15","0.10","0.30","0.13","0.54","0.25"],"font":{"color":"slategray","size":10},"smooth":{"enabled":true,"type":"diagonalCross"},"shadow":false},"physics":{"stabilization":false},"interaction":{"hover":true,"zoomSpeed":1}},"groups":["1","2"],"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","igraphlayout":{"type":"square"},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);","highlight":{"enabled":true,"hoverNearest":true,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"}},"evals":[],"jsHooks":[]}</script>
-<pre class="r"><code>topic_network(candidate_models[[which(K_range == 19)]])</code></pre>
+topic_network(candidate_models[[which(K_range == 19)]])
 <div id="htmlwidget-924e79f06af9ee4a7518" style="width:672px;height:480px;" class="visNetwork html-widget"></div>
 <script type="application/json" data-for="htmlwidget-924e79f06af9ee4a7518">{"x":{"nodes":{"id":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],"label":["T1: body party","T2: wood sign","T3: girl world","T4: dress gold","T5: love mind","T6: halo cherry","T7: god bone","T8: light time","T9: dream night","T10: time everything","T11: power que","T12: mama shake","T13: daddy ohh","T14: everything new","T15: baby boy","T16: home time","T17: look chick","T18: one ring","T19: hand daylight"],"size":[4.58993220078798,2.40845633714574,4.29349548362722,4.98376645951289,10.6942467350579,2.11917143907345,3.84144414571816,8.52139043298047,10.1602727332738,9.83786663904466,1.71846946196585,2.17168641868517,3.80143450626679,3.04876654158458,7.77027966967996,7.11828765662789,2.93949802310959,6.53179674673629,3.44973836912168],"group":[1,2,1,3,2,1,3,3,2,3,4,1,1,3,1,3,2,3,2],"x":[-0.830596188752493,-0.248623111876195,-1,-0.177867086496906,-0.349565479628275,-0.314341482861369,0.213142249461445,-0.372976367613889,-0.519790682966036,-0.159174230371479,1,-0.033364460959272,-0.690746106316852,-0.681353195353231,-0.387397978166983,-0.340813479571971,-0.732738646089906,-0.000695611515194594,-0.532830628001417],"y":[-0.403462170145803,1,-0.144238821489221,-0.227536140902586,0.397156323692949,-1,0.554860955256197,-0.0657485026268656,-3.68155853255336e-05,0.134482541436537,-0.208881801724798,-0.896826578746678,-0.184479787430967,0.259820707386172,-0.328766981358137,0.140247882240726,0.562497359027317,-0.0926899811334282,-0.508592376410654]},"edges":{"from":[1,2,1,4,5,1,4,5,8,4,5,8,9,6,3,4,9,3,5,8,10,1,3,4,5,6,8,9,10,12,13,4,5,7,8,9,10,13,14,15,9,16,4,8,9,10,15,16,9,15,16],"to":[3,5,8,8,8,9,9,9,9,10,10,10,10,12,13,13,13,14,14,14,14,15,15,15,15,15,15,15,15,15,15,16,16,16,16,16,16,16,16,16,17,17,18,18,18,18,18,18,19,19,19],"width":[0.294564185296362,0.306791056989876,0.2226711098884,0.244424490453843,0.292866608521517,0.122281303469648,0.228402572807837,0.371770248345445,0.407816712212703,0.681641657573124,0.220036989461033,0.817056450424371,0.360043881642456,0.115760861553423,0.18668152726602,0.284947474175473,0.199199464766029,0.131179721251991,0.116417299058967,0.213837758038612,0.219423157953626,0.198094206247052,0.209763210294721,0.375659166498789,0.185583105345671,0.22756994885552,0.171420412551992,0.274109491611023,0.486704849249075,0.514439553200605,0.257793873522623,0.314845058866046,0.274795695229043,0.165381592604884,0.570017546666846,0.429128742755303,1.01838583197655,0.124633917599857,0.185122258138669,0.163347742237595,0.144748196721137,0.196903452829318,0.134438024639615,0.149894826399501,0.267005295350402,0.264788603920721,0.113663152359469,0.175481371445521,0.278233080191182,0.126406527961785,0.171911508692639],"name":[0.15,0.15,0.11,0.12,0.15,0.06,0.11,0.19,0.2,0.34,0.11,0.41,0.18,0.06,0.09,0.14,0.1,0.07,0.06,0.11,0.11,0.1,0.1,0.19,0.09,0.11,0.09,0.14,0.24,0.26,0.13,0.16,0.14,0.08,0.29,0.21,0.51,0.06,0.09,0.08,0.07,0.1,0.07,0.07,0.13,0.13,0.06,0.09,0.14,0.06,0.09],"label":["0.15","0.15","0.11","0.12","0.15","0.06","0.11","0.19","0.20","0.34","0.11","0.41","0.18","0.06","0.09","0.14","0.10","0.07","0.06","0.11","0.11","0.10","0.10","0.19","0.09","0.11","0.09","0.14","0.24","0.26","0.13","0.16","0.14","0.08","0.29","0.21","0.51","0.06","0.09","0.08","0.07","0.10","0.07","0.07","0.13","0.13","0.06","0.09","0.14","0.06","0.09"],"edge.width":[2.94564185296362,3.06791056989876,2.226711098884,2.44424490453843,2.92866608521517,1.22281303469648,2.28402572807837,3.71770248345445,4.07816712212703,6.81641657573124,2.20036989461033,8.17056450424371,3.60043881642456,1.15760861553423,1.8668152726602,2.84947474175473,1.99199464766029,1.31179721251991,1.16417299058967,2.13837758038612,2.19423157953626,1.98094206247052,2.09763210294721,3.75659166498789,1.85583105345671,2.2756994885552,1.71420412551992,2.74109491611023,4.86704849249075,5.14439553200605,2.57793873522623,3.14845058866046,2.74795695229043,1.65381592604884,5.70017546666846,4.29128742755304,10.1838583197655,1.24633917599857,1.85122258138669,1.63347742237595,1.44748196721137,1.96903452829318,1.34438024639615,1.49894826399501,2.67005295350402,2.64788603920721,1.13663152359469,1.75481371445521,2.78233080191182,1.26406527961785,1.71911508692639],"color":["#B4B9C3","#AAB4C8","#B4B9C3","#B4B9C3","#B4B9C3","#BEBEBE","#B4B9C3","#AAB4C8","#A0B0CD","#82A2DD","#B4B9C3","#789EE2","#AAB4C8","#BEBEBE","#BEBEBE","#B4B9C3","#BEBEBE","#BEBEBE","#BEBEBE","#B4B9C3","#B4B9C3","#BEBEBE","#B4B9C3","#AAB4C8","#BEBEBE","#B4B9C3","#BEBEBE","#B4B9C3","#96ABD2","#96ABD2","#B4B9C3","#AAB4C8","#B4B9C3","#BEBEBE","#8CA7D8","#A0B0CD","#6495ED","#BEBEBE","#BEBEBE","#BEBEBE","#BEBEBE","#BEBEBE","#BEBEBE","#BEBEBE","#B4B9C3","#B4B9C3","#BEBEBE","#BEBEBE","#B4B9C3","#BEBEBE","#BEBEBE"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"physics":false,"shape":"dot","color":{"background":"#0085AF","border":"#013848","highlight":"#FF8000"},"font":{"size":10,"background":"white"},"shadow":{"enabled":true,"size":10}},"manipulation":{"enabled":false},"edges":{"label":["0.15","0.15","0.11","0.12","0.15","0.06","0.11","0.19","0.20","0.34","0.11","0.41","0.18","0.06","0.09","0.14","0.10","0.07","0.06","0.11","0.11","0.10","0.10","0.19","0.09","0.11","0.09","0.14","0.24","0.26","0.13","0.16","0.14","0.08","0.29","0.21","0.51","0.06","0.09","0.08","0.07","0.10","0.07","0.07","0.13","0.13","0.06","0.09","0.14","0.06","0.09"],"font":{"color":"slategray","size":10},"smooth":{"enabled":true,"type":"diagonalCross"},"shadow":false},"physics":{"stabilization":false},"interaction":{"hover":true,"zoomSpeed":1}},"groups":["1","2","3","4"],"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","igraphlayout":{"type":"square"},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);","highlight":{"enabled":true,"hoverNearest":true,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"}},"evals":[],"jsHooks":[]}</script>
 <p>Colors indicate groups of similar topics (via community detection).
@@ -6269,18 +6211,19 @@ find a suitable label + resolve conflicts</p>
 <pre class="r"><code># theta (document-topic probabilities)
 theta &lt;- t(getEstimators(lda)$theta)
 colnames(theta) &lt;- paste(&quot;Topic&quot;, 1:K)
-theta[1:5,1:5]</code></pre>
-<pre><code>##          Topic 1      Topic 2      Topic 3      Topic 4      Topic 5
+theta[1:5,1:5]
+##          Topic 1      Topic 2      Topic 3      Topic 4      Topic 5
 ## [1,] 0.000923361 0.0009233610 0.0009233610 0.0009233610 0.1763619575
 ## [2,] 0.157894737 0.0007518797 0.0007518797 0.0007518797 0.0007518797
 ## [3,] 0.001547988 0.0309597523 0.0015479876 0.0015479876 0.0015479876
 ## [4,] 0.103913630 0.0013495277 0.0013495277 0.0013495277 0.1039136302
-## [5,] 0.131844763 0.0005316321 0.0005316321 0.0005316321 0.1015417331</code></pre>
-<pre class="r"><code># beta (word-topic probabilities) a.k.a. phi
+## [5,] 0.131844763 0.0005316321 0.0005316321 0.0005316321 0.1015417331
+
+# beta (word-topic probabilities) a.k.a. phi
 beta &lt;- t(getEstimators(lda)$phi)
 colnames(beta) &lt;- paste(&quot;Topic&quot;, 1:K)
-beta[1:5,1:5]</code></pre>
-<pre><code>##              Topic 1     Topic 2      Topic 3      Topic 4      Topic 5
+beta[1:5,1:5]
+##              Topic 1     Topic 2      Topic 3      Topic 4      Topic 5
 ## card    5.558644e-05 0.000106792 6.085686e-05 1.336095e-03 0.0013889384
 ## breath  5.558644e-05 0.000106792 6.085686e-05 6.680473e-05 0.0000356138
 ## time    5.558644e-05 0.000106792 6.085686e-05 4.068408e-02 0.0189821575
@@ -6291,8 +6234,8 @@ beta[1:5,1:5]</code></pre>
 <h2>Top terms</h2>
 <pre class="r"><code>topterms &lt;- tosca::topWords(getTopics(lda), 10)
 topterms &lt;- apply(topterms, 2, paste, collapse = &quot;, &quot;)
-head(topterms)</code></pre>
-<pre><code>## [1] &quot;body, party, soul, nobody, promise, mission, cat, girl, endgame, reputation&quot;        
+head(topterms)
+## [1] &quot;body, party, soul, nobody, promise, mission, cat, girl, endgame, reputation&quot;        
 ## [2] &quot;wood, sign, december, sagittarius, string, aquarius, pisces, virgo, geminus, taurus&quot;
 ## [3] &quot;girl, world, woman, everybody, starlight, mutha, home, type, liquor, minute&quot;        
 ## [4] &quot;dress, gold, freakum, name, street, time, rain, talk, friend, goldmember&quot;           
@@ -6311,10 +6254,10 @@ topdocs &lt;- get_topdocs(lda, texts,
 <p>Two examples (you should always inspect all topics!):</p>
 <pre class="r"><code># show most representative texts
 t &lt;- 2 # select topic
-topterms[t]</code></pre>
-<pre><code>## [1] &quot;wood, sign, december, sagittarius, string, aquarius, pisces, virgo, geminus, taurus&quot;</code></pre>
-<pre class="r"><code>topdocs[[t]][,-2] # -2 to leave out the column with the lyrics</code></pre>
-<pre><code>##            Title_low Year  Artist      prob
+topterms[t]
+## [1] &quot;wood, sign, december, sagittarius, string, aquarius, pisces, virgo, geminus, taurus&quot;
+topdocs[[t]][,-2] # -2 to leave out the column with the lyrics
+##            Title_low Year  Artist      prob
 ## 22             signs 2003 Beyonce 0.9940417
 ## 203 out of the woods 2014  Taylor 0.8508772
 ## 266            exile 2020  Taylor 0.6715523
@@ -6324,19 +6267,20 @@ topterms[t]</code></pre>
 ## 81         disappear 2008 Beyonce 0.3711911
 ## 120 back to december 2010  Taylor 0.3630816
 ## 126         innocent 2010  Taylor 0.2872180
-## 163              red 2012  Taylor 0.2514620</code></pre>
-<pre class="r"><code>topdocs[[t]][1:2,2] # top two lyrics</code></pre>
-<pre><code>## [1] &quot;In December, every sign has its own mode\nI was in love with a Sagittarius\nSee the emotions he put me through\nFrom Capricorns to Aquarius\nThey all got their different minds\nThe affection of a Virgo\nWhich sign matches good with mine?\nI was in love with a Sagittarius, he blew my mind\nHe also had a flip side too much like a Gemini\nHe was freaky like a Taurus, the way he handled me, yeah\nFlirtatious like an Aries\nWhich sign is best for me?\nCapricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, oh\nLeo, Virgo, Libra, Scorpio, Sagittarius\nI love all y&#39;all\nCapricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, oh\nLeo, Virgo, Libra, Scorpio, Sagittarius\nI love all y&#39;all\nHey, I wish he was a Virgo, the same sign as me\nAnd know how to show me love, &#39;cause I&#39;ve been hurt by a Pisces\n(Rewind)\nI wish he was a Virgo, the same sign as me\nAnd know how to show me love, &#39;cause I&#39;ve been hurt by a Pisces\nI want him sexy like a Scorpio\nThe way he holds me close, yeah\nSensitive as a Cancer\nEvery sign from coast to coast\nCapricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, oh\nLeo, Virgo, Libra, Scorpio, Sagittarius\nI love all y&#39;all\nCapricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, oh\nLeo, Virgo, Libra, Scorpio, Sagittarius\nI love all y&#39;all\nI can&#39;t explain why I love him\nBossy like Leo&#39;s do\nGot game like an Aquarius\nSwitch moves after he&#39;s been with you\nFun like a Libra\nHe stays on my mind\nHe&#39;s so unpredictable\nHe reminds me of every sign\nCapricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, oh\nLeo, Virgo, Libra, Scorpio, Sagittarius\nI love all y&#39;all\nCapricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, oh\nLeo, Virgo, Libra, Scorpio, Sagittarius\nI love all y&#39;all\nEvery sign from the first to the last (Ohh)\nEveryday of the month has its good and its bad\n(Everyday of the month)\nI love you all, all twelve signs\nCapricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, oh\nCapricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, oh\nCapricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, oh\nEvery one of these signs, you know you blowing me away\nNo matter when you&#39;re born for sure with me you okay\nI love every one of y&#39;all no matter what sign you are\nJanuary to December, here&#39;s my open arms\nI was in love with a Sagittarius\nI was in love with a Sagittarius\nI was in love with a Sagittarius\nI was in love with a Sagittarius&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## 163              red 2012  Taylor 0.2514620
+
+topdocs[[t]][1:2,2] # top two lyrics
+## [1] &quot;In December, every sign has its own mode\nI was in love with a Sagittarius\nSee the emotions he put me through\nFrom Capricorns to Aquarius\nThey all got their different minds\nThe affection of a Virgo\nWhich sign matches good with mine?\nI was in love with a Sagittarius, he blew my mind\nHe also had a flip side too much like a Gemini\nHe was freaky like a Taurus, the way he handled me, yeah\nFlirtatious like an Aries\nWhich sign is best for me?\nCapricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, oh\nLeo, Virgo, Libra, Scorpio, Sagittarius\nI love all y&#39;all\nCapricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, oh\nLeo, Virgo, Libra, Scorpio, Sagittarius\nI love all y&#39;all\nHey, I wish he was a Virgo, the same sign as me\nAnd know how to show me love, &#39;cause I&#39;ve been hurt by a Pisces\n(Rewind)\nI wish he was a Virgo, the same sign as me\nAnd know how to show me love, &#39;cause I&#39;ve been hurt by a Pisces\nI want him sexy like a Scorpio\nThe way he holds me close, yeah\nSensitive as a Cancer\nEvery sign from coast to coast\nCapricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, oh\nLeo, Virgo, Libra, Scorpio, Sagittarius\nI love all y&#39;all\nCapricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, oh\nLeo, Virgo, Libra, Scorpio, Sagittarius\nI love all y&#39;all\nI can&#39;t explain why I love him\nBossy like Leo&#39;s do\nGot game like an Aquarius\nSwitch moves after he&#39;s been with you\nFun like a Libra\nHe stays on my mind\nHe&#39;s so unpredictable\nHe reminds me of every sign\nCapricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, oh\nLeo, Virgo, Libra, Scorpio, Sagittarius\nI love all y&#39;all\nCapricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, oh\nLeo, Virgo, Libra, Scorpio, Sagittarius\nI love all y&#39;all\nEvery sign from the first to the last (Ohh)\nEveryday of the month has its good and its bad\n(Everyday of the month)\nI love you all, all twelve signs\nCapricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, oh\nCapricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, oh\nCapricorn, Aquarius, Pisces, Aries, Taurus, Gemini, Cancer, oh\nEvery one of these signs, you know you blowing me away\nNo matter when you&#39;re born for sure with me you okay\nI love every one of y&#39;all no matter what sign you are\nJanuary to December, here&#39;s my open arms\nI was in love with a Sagittarius\nI was in love with a Sagittarius\nI was in love with a Sagittarius\nI was in love with a Sagittarius&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 ## [2] &quot;Looking at it now\nIt all seems so simple\nWe were lying on your couch\nI remember\nYou took a Polaroid of us\nThen discovered (then discovered)\nThe rest of the world was black and white\nBut we were in screaming color\nAnd I remember thinking\nAre we out of the woods yet? Are we out of the woods yet?\nAre we out of the woods yet? Are we out of the woods?\nAre we in the clear yet? Are we in the clear yet?\nAre we in the clear yet? In the clear yet, good\nAre we out of the woods yet? Are we out of the woods yet?\nAre we out of the woods yet? Are we out of the woods?\nAre we in the clear yet? Are we in the clear yet?\nAre we in the clear yet? In the clear yet, good\nAre we out of the woods\nLooking at it now\nLast December (last December)\nWe were built to fall apart\nThen fall back together (back together)\nOoh your necklace hanging from my neck\nThe night we couldn&#39;t quite forget\nWhen we decided (we decided) to move the furniture so we could dance\nBaby, like we stood a chance\nTwo paper airplanes flying, flying, flying\nAnd I remember thinking\nAre we out of the woods yet? Are we out of the woods yet?\nAre we out of the woods yet? Are we out of the woods?\nAre we in the clear yet? Are we in the clear yet?\nAre we in the clear yet? In the clear yet, good\nAre we out of the woods yet? Are we out of the woods yet?\nAre we out of the woods yet? Are we out of the woods?\nAre we in the clear yet? Are we in the clear yet?\nAre we in the clear yet? In the clear yet, good\nAre we out of the woods?\nRemember when you hit the brakes too soon\nTwenty stitches in a hospital room\nWhen you started crying baby, I did too\nBut when the sun came up I was looking at you\nRemember when we couldn&#39;t take the heat\nI walked out, I said, I&#39;m setting you free\nBut the monsters turned out to be just trees\nWhen the sun came up you were looking at me\nYou were looking at me\nOh!\nYou were looking at me\nAre we out of the woods yet? Are we out of the woods yet?\nAre we out of the woods yet? Are we out of the woods? (I remember)\nAre we in the clear yet? Are we in the clear yet?\nAre we in the clear yet? Are we in the clear yet? (Oh, I remember)\nAre we out of the woods yet? Are we out of the woods yet?\nAre we out of the woods yet? Are we out of the woods?\nAre we in the clear yet? Are we in the clear yet?\nAre we in the clear yet? In the clear yet, good\nAre we out of the woods yet? Are we out of the woods yet?\nAre we out of the woods yet? Are we out of the woods?\nAre we in the clear yet? Are we in the clear yet?\nAre we in the clear yet? In the clear yet, good\nAre we out of the woods yet? Are we out of the woods yet?\nAre we out of the woods yet? Are we out of the woods?\nAre we in the clear yet? Are we in the clear yet?\nAre we in the clear yet? In the clear yet, good\nAre we out of the woods yet? Are we out of the woods yet?\nAre we out of the woods yet? Are we out of the woods?\nAre we in the clear yet? Are we in the clear yet?\nAre we in the clear yet? In the clear yet, good\n&quot;</code></pre>
 <p>This topic mainly represents the songs “Signs” by Beyoncé and “Out of
 the woods” by Taylor Swift. Both share the term “december” → Label
 “December &amp; Signs”</p>
 <pre class="r"><code># show most representative texts
 t &lt;- 5 # select topic
-topterms[t]</code></pre>
-<pre><code>## [1] &quot;love, mind, right, life, kiss, heart, touch, nothing, time, someone&quot;</code></pre>
-<pre class="r"><code>topdocs[[t]][,-2] # -2 to leave out the column with the lyrics</code></pre>
-<pre><code>##                      Title_low Year  Artist      prob
+topterms[t]
+## [1] &quot;love, mind, right, life, kiss, heart, touch, nothing, time, someone&quot;
+topdocs[[t]][,-2] # -2 to leave out the column with the lyrics
+##                      Title_low Year  Artist      prob
 ## 206                  this love 2014  Taylor 0.9884467
 ## 51                lost yo mind 2006 Beyonce 0.9783626
 ## 66  tied together with a smile 2006  Taylor 0.8141447
@@ -6346,9 +6290,10 @@ topterms[t]</code></pre>
 ## 164       sad beautiful tragic 2012  Taylor 0.7591707
 ## 26     the closer i get to you 2003 Beyonce 0.7567251
 ## 153                 start over 2011 Beyonce 0.7521930
-## 132                       ours 2010  Taylor 0.7221743</code></pre>
-<pre class="r"><code>topdocs[[t]][1:2,2] # top two lyrics</code></pre>
-<pre><code>## [1] &quot;Clear blue water\nHigh tide, came and brought you in\nAnd I could go on and on, on and on\nAnd I will, skies grow darker, currents swept you out again\nAnd you were just gone and gone, gone and gone\nIn silent screams, and wildest dreams\nI never dreamed of this\nThis love is good\nThis love is bad\nThis love is a life back from the dead, oh\nThese hands had to let it go free\nAnd this love came back to me, oh\nOh, oh\nTossing, turning, struggle through the night for someone new\nAnd I could go on and on, on and on\nLanterns burning, flickered in the mind only you\nBut you were still gone, gone, gone\nBeen losing grip, on sinking ships\nYou showed up, just in time\nThis love is good\nThis love is bad\nThis love is a life back from the dead, oh\nThese hands had to let it go free\nAnd this love came back to me, oh\nThis love left a permanent mark\nThis love is glowing in the dark, oh\nThese hands had to let it go free\nAnd this love came back to me, oh\nThis love, this love, this love, this love (Oh)\nThis love, this love, this love, this love (Oh)\nThis love, this love, this love, this love (Oh)\nThis love, this love, this love, this love\nYour kiss, my cheek\nI watched you leave\nYour smile, my ghost\nI fell to my knees\nWhen you&#39;re young, just to run\nBut you come back to what you need\nThis love is good\nThis love is bad\nThis love is a life back from the dead, oh\nThese hands had to let it go free\nAnd, this love came back to me, oh\nThis love that&#39;s a permanent mark\n(This love) This love is glowing in the dark, oh\n(This love) These hands had to let it go free\n(This love) And this love came back to me, oh\nThis love, this love, this love, this love (Oh)\nThis love, this love, this love, this love (Oh)\nThis love, this love, this love, this love (Oh)\nThis love, this love, this love, this love (This love came back to me, oh)\n&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+## 132                       ours 2010  Taylor 0.7221743
+
+topdocs[[t]][1:2,2] # top two lyrics
+## [1] &quot;Clear blue water\nHigh tide, came and brought you in\nAnd I could go on and on, on and on\nAnd I will, skies grow darker, currents swept you out again\nAnd you were just gone and gone, gone and gone\nIn silent screams, and wildest dreams\nI never dreamed of this\nThis love is good\nThis love is bad\nThis love is a life back from the dead, oh\nThese hands had to let it go free\nAnd this love came back to me, oh\nOh, oh\nTossing, turning, struggle through the night for someone new\nAnd I could go on and on, on and on\nLanterns burning, flickered in the mind only you\nBut you were still gone, gone, gone\nBeen losing grip, on sinking ships\nYou showed up, just in time\nThis love is good\nThis love is bad\nThis love is a life back from the dead, oh\nThese hands had to let it go free\nAnd this love came back to me, oh\nThis love left a permanent mark\nThis love is glowing in the dark, oh\nThese hands had to let it go free\nAnd this love came back to me, oh\nThis love, this love, this love, this love (Oh)\nThis love, this love, this love, this love (Oh)\nThis love, this love, this love, this love (Oh)\nThis love, this love, this love, this love\nYour kiss, my cheek\nI watched you leave\nYour smile, my ghost\nI fell to my knees\nWhen you&#39;re young, just to run\nBut you come back to what you need\nThis love is good\nThis love is bad\nThis love is a life back from the dead, oh\nThese hands had to let it go free\nAnd, this love came back to me, oh\nThis love that&#39;s a permanent mark\n(This love) This love is glowing in the dark, oh\n(This love) These hands had to let it go free\n(This love) And this love came back to me, oh\nThis love, this love, this love, this love (Oh)\nThis love, this love, this love, this love (Oh)\nThis love, this love, this love, this love (Oh)\nThis love, this love, this love, this love (This love came back to me, oh)\n&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 ## [2] &quot;OMG, you done lost yo&#39; motherfreakin&#39; mind!\nYou must have lost yo mind\nYou must&#39;ve just lost yo mind (Yo mind)\nYou must&#39;ve just lost yo mind (Yo mind)\nThey told me &#39;bout all the lies (The lies)\nI took you back all those times\nYou must have lost yo mind\nYou must&#39;ve just lost yo mind (Yo mind)\nThat Chloe crop bag ain&#39;t mine (Wasn&#39;t mine)\nMany earrings must I find\nYou must&#39;ve just lost yo mind\nI could shed so many tears\nBut I won&#39;t let you see me crying\nNow it all adds up\nEven the numbers\nLet me exactly hear\nBut you you wonder\nI know how my mama felt\nGetting ran over\nBut this ain&#39;t a cycle here\nThis one is over\nSomething told me to check my time\nIf I&#39;m the one that&#39;s always crying\nNow that it&#39;s over\nI can move on from here\nGlad that it&#39;s over\nSo glad that it&#39;s over\nI could&#39;ve told ya\nIt&#39;s all in the atmosphere\nI can&#39;t control ya\nBut I&#39;m not a pushover no more\nYou must have lost yo mind\nYou must&#39;ve just lost yo mind (Yo mind)\nYou must&#39;ve just lost yo mind (Yo mind)\nThey told me &#39;bout all the lies (The lies)\nI took you back all those times\nYou must have lost yo mind\nYou must&#39;ve just lost yo mind (Yo mind)\nThat Chloe crop bag ain&#39;t mine (Wasn&#39;t mine)\nMany earrings must I find\nYou must&#39;ve just lost yo mind\nYou could shed so many tears\nBut you won&#39;t let me see you crying\nIf she really loves ya\nThan that&#39;s what ya need to build\nI&#39;m more than your woman\nI know you don&#39;t love her\nI painted it for ya\nBut you picked the colors\nAt night you&#39;ll get over\nYeah, like you will never\nI trusted you through all these years\nAnd I&#39;m the one that&#39;s always crying\nNow that it&#39;s over\nI can move on from here\nGlad that it&#39;s over\nSo glad that it&#39;s over\nThe melody told ya\nExactly the pain I feel\nReap what you sow, boy\nI&#39;m not a pushover\nYou must have lost yo mind\nYou must&#39;ve just lost yo mind (You lost it)\nYou must&#39;ve just lost yo mind (Yo mind)\nThey told me &#39;bout all the lies (The lies)\nI took you back all those times\nYou must have lost yo mind\nYou must&#39;ve just lost yo mind (Yo mind)\nThat Chloe crop bag ain&#39;t mine (Wasn&#39;t mine)\nMany earrings must I find\nYou must&#39;ve just lost yo mind\nI always knew you were counterfeit\nThat&#39;s what you get\nI see you crying\nExcuses after excuses\nPretending that we exclusive\nI stuck around all these years\nI dried and cried all your tears\nI trusted you despite my fears\nAnd I refuse to keep on trying\nNow that it&#39;s over\nI can move over\nGlad that it&#39;s over\nSo glad that it&#39;s over\nYou just confirmed it\nThis ain&#39;t a warning\nBeen living a double life\nYou must have lost yo mind\nYou must have lost yo mind\nYou must&#39;ve just lost yo mind (Yo mind)\n(You crazy!)\nYou must&#39;ve just lost yo mind\n(You crazy!)\nThey told me &#39;bout all the lies\n(You lost yo mind!)\nI took you back all those times\n(Tell ya one more time!)\nYou must have lost yo mind!\n(You lost yo mind!)\nThat Chloe crop bag ain&#39;t mine\n(It was not mine!)\nMany earrings must I find?\n(Hey!)\nYou must&#39;ve just lost yo mind\nYou just lost yo mind&quot;</code></pre>
 <p>“Love” is a common term in the songs (as expected) → Label “Love”</p>
 <p>Model validation takes some time. Take your time.</p>
@@ -6391,8 +6336,8 @@ n_docs &lt;- apply(theta, 2, function(x){unname(table(x &gt; 0.5)[2])})
 # data frame
 topic_table &lt;- data.frame(&quot;ID&quot; = 1:K, labels, topterms, prevalence, n_docs)
 topic_table_full &lt;- topic_table
-topic_table_full[,1:3]</code></pre>
-<pre><code>##          ID                   labels
+topic_table_full[,1:3]
+##          ID                   labels
 ## Topic 1   1          Party &amp; Dancing
 ## Topic 2   2         December &amp; Signs
 ## Topic 3   3       Woman &amp; Girl Power
@@ -6456,8 +6401,8 @@ beta &lt;- beta[,-remove]
 colnames(beta) &lt;- topic_table$labels
 
 K &lt;- nrow(topic_table)</code></pre>
-<pre class="r"><code>topic_table</code></pre>
-<pre><code>##    ID                   labels
+<pre class="r"><code>topic_table
+##    ID                   labels
 ## 1   1          Party &amp; Dancing
 ## 2   2         December &amp; Signs
 ## 3   3       Woman &amp; Girl Power
@@ -6612,8 +6557,8 @@ queries for databases</a>).</p>
 <h1>SessionInfo</h1>
 <div id="everything-except-computation-of-candidate-models" class="section level2">
 <h2>Everything except computation of candidate models</h2>
-<pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>## R version 4.2.1 (2022-06-23 ucrt)
+<pre class="r"><code>sessionInfo()
+## R version 4.2.1 (2022-06-23 ucrt)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 19044)
 ## 
