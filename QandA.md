@@ -2,7 +2,7 @@
 
 **1. Es sind hier [Folie 25] wahrscheinlich Emoticons gemeint; Emojis sind Grafiken?**
 
-Gemeint sind Emoticons und Emojis, letztere sind im Unicode aufgenommen und können von `R` dargestellt werden. Mit der Funktion 'replace_emoji(x)' aus dem package [textclean](https://github.com/trinker/textclean) können Emojis in ihre Wortäquivalente transformiert werden.
+Gemeint sind Emoticons und Emojis, letztere sind im Unicode aufgenommen und können von `R` dargestellt werden. Mit der Funktion `replace_emoji(x)` aus dem package [textclean](https://github.com/trinker/textclean) können Emojis in ihre Wortäquivalente transformiert werden.
 
 **2. Was ist ein Toot? [Folie 2]?**
 
