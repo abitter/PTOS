@@ -15,6 +15,8 @@ output:
 
 This is the markdown for the example analysis presented in the [PTOS Topic Modeling](https://leibniz-psychology.org/en/opensciencelectures/topic-modeling/) lecture. Here, a topic modeling workflow is presented using song lyrics as an example.
 
+Find a **markdown with Q&As** here: https://github.com/abitter/PTOS/blob/main/QandA.md (it's in German, you might find https://www.deepl.com/translator helpful).
+
 # Libraries
 
 
