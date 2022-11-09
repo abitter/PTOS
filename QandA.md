@@ -118,3 +118,4 @@ Mir bekannt sind:
 + [Grimmer et al. (2022). Text as data](https://press.princeton.edu/books/paperback/9780691207551/text-as-data)
 + [Niekler (2016). Automatisierte Verfahren für die Themenanalyse nachrichtenorientierter Textquellen](http://asv.informatik.uni-leipzig.de/publication/file/350/Niekler_Diss.pdf)
 + [Silge & Robinson (n. d.). Text Mining with R](https://www.tidytextmining.com/)
++ [Rieger (2022). Reliability evaluation and an update algorithm for the latent Dirichlet allocation](https://eldorado.tu-dortmund.de/bitstream/2003/41102/2/Dissertation_mit_DOI.pdf)
