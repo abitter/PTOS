@@ -492,6 +492,7 @@ prevalence_joined <- as.data.frame(cbind(prevalence_beyonce, prevalence_taylor, 
 colnames(prevalence_joined)[3] <- "overall"
 prevalence_joined <- prevalence_joined[order(prevalence_joined$overall),]
 prevalence_joined <- as.matrix(t(prevalence_joined[,1:2]))
+saveRDS(prevalence_joined, file = "./RDS/prevalence_joined.RDS")
 
 # plot
 barplot(prevalence_joined, beside = TRUE, horiz = TRUE, las = 1,
